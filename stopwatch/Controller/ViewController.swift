@@ -131,8 +131,11 @@ class ViewController: NSViewController, NSMenuDelegate {
         let time = timeTextField.stringValue
         
         //If timer service is not running, check if it's 00:00:00.000. Start stopwatch
-        if !isTimerRunning && (time == "" || time == "00:00:00.000" || time == "00:00:00" || time == "00:00") {
-            // TODO: START STOP WATCH SERVICE
+        if (isTimerRunning) {
+            isTimerPaused = isTimerPaused ? false : true
+            pauseTimer(isPaused: isTimerPaused)
+        }
+        else if !isTimerRunning && (time == "" || time == "00:00:00.000" || time == "00:00:00" || time == "00:00") {
             runTimer(-1)
         }
         //If timer is running, pause it
