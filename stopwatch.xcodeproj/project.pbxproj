@@ -16,6 +16,7 @@
 		822AACF82B14BE7700C2F378 /* stopwatchUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822AACF72B14BE7700C2F378 /* stopwatchUITestsLaunchTests.swift */; };
 		82DBDC3A2B36AB8700B0BDBE /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DBDC392B36AB8700B0BDBE /* ColorPickerViewController.swift */; };
 		82DBDC3C2B37867900B0BDBE /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DBDC3B2B37867900B0BDBE /* UserDefaultsManager.swift */; };
+		82DBDC412B37CF3500B0BDBE /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DBDC402B37CF3500B0BDBE /* TimerManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		822AACF72B14BE7700C2F378 /* stopwatchUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stopwatchUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		82DBDC392B36AB8700B0BDBE /* ColorPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
 		82DBDC3B2B37867900B0BDBE /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		82DBDC402B37CF3500B0BDBE /* TimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				82DBDC3B2B37867900B0BDBE /* UserDefaultsManager.swift */,
+				82DBDC402B37CF3500B0BDBE /* TimerManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				822AACDC2B14BE7500C2F378 /* ViewController.swift in Sources */,
+				82DBDC412B37CF3500B0BDBE /* TimerManager.swift in Sources */,
 				82DBDC3A2B36AB8700B0BDBE /* ColorPickerViewController.swift in Sources */,
 				82DBDC3C2B37867900B0BDBE /* UserDefaultsManager.swift in Sources */,
 				822AACDA2B14BE7500C2F378 /* AppDelegate.swift in Sources */,
