@@ -27,7 +27,9 @@ class ViewController: NSViewController, NSMenuDelegate {
     var time: Timer?
     var startTime: Date?
     var isTimerRunning: Bool = false
-    
+    var isTimerPaused: Bool = false
+    var elapsedTime: TimeInterval = 0
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,7 +47,6 @@ class ViewController: NSViewController, NSMenuDelegate {
         stopButton.contentTintColor = txtColor
         configButton.image?.isTemplate = true
         configButton.contentTintColor = txtColor
-        
         
         NSEvent.addLocalMonitorForEvents(matching: .leftMouseDown) { (event) -> NSEvent? in
             self.handleMouseClick(event)
@@ -127,24 +128,22 @@ class ViewController: NSViewController, NSMenuDelegate {
     @IBAction func startButtonClicked(_ sender: NSButton) {
         print("start button clicked")
         // TODO: START STOP WATCH SERVICE
-
+        
         let time = timeTextField.stringValue
         
-        //If timer service is not running, check if it's 00:00:00.000. Start stopwatch
+        //TODO: If time is running, pause it
         if (isTimerRunning) {
-            isTimerPaused = isTimerPaused ? false : true
-            pauseTimer(isPaused: isTimerPaused)
+            isTimerPaused = isTimerPaused ? true : false
+            pauseTimer(isTimerPaused: isTimerPaused)
+            return
         }
+        //If time is not running and it's zeroed, start stopwatch
         else if !isTimerRunning && (time == "" || time == "00:00:00.000" || time == "00:00:00" || time == "00:00") {
             runTimer(-1)
+            return
         }
-        //If timer is running, pause it
-        else if (isTimerRunning) {
-            //TODO: PAUSE TIMER SERVICE
-        }
-        //Start timer
+        //TODO: Start timer
         else {
-            //TODO: CHECK STRING AND START TIMER SERVICE UP UNTIL TIMER RUNS OUT
             
             let splitTime = time.split(separator: ":")
             var hrs = 0
@@ -152,36 +151,31 @@ class ViewController: NSViewController, NSMenuDelegate {
             var secs = 0
             var millis = 0
             
+            //TODO: CHECK IF SPLIT TIME ONLY HAS INTEGERS. return
+            
+            //User only gave hours and minutes
             if (splitTime.count == 2) {
                 secs = 0
                 millis = 0
-            } else if (splitTime.count == 3) {
+            }
+            //Get secs and millis or default them to 0
+            else if (splitTime.count == 3) {
                 let secsAndMillis = splitTime[2].split(separator: ".")
-                do {
-                    guard let secondsValue = Int(secsAndMillis[0]), let millisValue = Int(secsAndMillis[1]) else { throw NSError(domain: "InvalidTime", code: 1, userInfo: nil)
-                    }
-                    secs = secondsValue
-                    millis = millisValue
+                if secsAndMillis.count == 2 {
+                    secs = Int(secsAndMillis[0]) ?? 0
+                    millis = Int(secsAndMillis[1]) ?? 0
+                } else {
+                    secs = Int(secsAndMillis[0]) ?? 0
+                    millis = 0
                 }
-                catch {
-                    showAlert()
-                    return
-                }
-                
-            } else {
+            }
+            else {
                 showAlert()
                 return
             }
-            do {
-                guard let hourValue = Int(splitTime[0]), let minuteValue = Int(splitTime[1]) else {
-                    throw NSError(domain: "InvalidTime", code: 1, userInfo: nil)
-                }
-                hrs = hourValue
-                mins = minuteValue
-            } catch {
-                showAlert()
-                return
-            }
+            
+            hrs = Int(splitTime[0]) ?? 0
+            mins = Int(splitTime[1]) ?? 0
 
             let totalMillis = (hrs * 3600 + mins * 60 + secs) * 1000 + millis
             //TODO: START TIMER SERVICE
@@ -190,23 +184,15 @@ class ViewController: NSViewController, NSMenuDelegate {
         
     }
     
-    
     //Stops and clear timer
     @IBAction func stopButtonClicked(_ sender: NSButton) {
-        print("stop clicked")
-        // If timer service is running, stop it.
-        //If timer service is not running, reset the string
-        if (isTimerRunning) {
-            isTimerRunning = false
-            time?.invalidate()
-        }
-        else {
-            isTimerRunning = false
-            time?.invalidate()
+        if (!isTimerRunning || (isTimerRunning && isTimerPaused)) {
             timeTextField.stringValue = "00:00:00.000"
         }
+        isTimerRunning = false
+        isTimerPaused = false
+        time?.invalidate()
     }
-    
     
     //Load modal so user can change colors and transparency
     @IBAction func configButtonClicked(_ sender: NSButton) {
@@ -220,49 +206,57 @@ class ViewController: NSViewController, NSMenuDelegate {
         }
     }
     
+    func pauseTimer(isTimerPaused: Bool) {
+        print(isTimerPaused)
+        if isTimerPaused {
+            //TODO: UNPAUSE TIME
+            
+            time = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+            self.isTimerPaused = false
+        }
+        else {
+            //TODO: PAUSE TIME
+            time?.invalidate()
+            self.isTimerPaused = true
+        }
+    }
     
     //Timer Service
-    //TODO: TIMER SERVICE
+    //TODO: TIME SERVICE
     func runTimer(_ timer: Int) {
-        
+        //Run stopwatch
         if (timer == -1) {
             startTime = Date()
-            if (isTimerRunning) {
-                //Pause timer
-            }
-            else {
-                isTimerRunning = true
-                time?.invalidate()
-                time = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
-            }
-        } else {
-            //Start timer service
-            //manager.startTimer()
-            let delayInterval = TimeInterval(timer) / 1000.0
-            let endTime = Date().addingTimeInterval(delayInterval)
             
-            RunLoop.current.run(until: endTime)
+            isTimerRunning = true
+            self.isTimerPaused = false
+            time?.invalidate()
+            time = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+            
+        } 
+        //Run timer
+        else {
+            
         }
     }
     
     @objc func updateTimer() {
-            guard let startTime = startTime else { return }
-            
-            // Get the current time
-            let currentTime = Date()
-            
-            // Calculate the elapsed time in seconds
-            let elapsedTime = currentTime.timeIntervalSince(startTime)
-            
-            // Convert the elapsed time to the desired format HH:MM:ss.SSS
-            let hours = Int(elapsedTime) / 3600
-            let minutes = (Int(elapsedTime) % 3600) / 60
-            let seconds = (Int(elapsedTime) % 3600) % 60
-            let milliseconds = Int(elapsedTime.truncatingRemainder(dividingBy: 1) * 1000)
-            
-            // Update the NSTextField with the timer value
-            timeTextField.stringValue = String(format: "%02d:%02d:%02d.%03d", hours, minutes, seconds, milliseconds)
-        }
+        
+        // Get the current time
+        let currentTime = Date()
+        
+        // Calculate the elapsed time in seconds
+        elapsedTime = currentTime.timeIntervalSince(self.startTime!)
+        
+        // Convert the elapsed time to the desired format HH:MM:ss.SSS
+        let hours = Int(elapsedTime) / 3600
+        let minutes = (Int(elapsedTime) % 3600) / 60
+        let seconds = (Int(elapsedTime) % 3600) % 60
+        let milliseconds = Int(elapsedTime.truncatingRemainder(dividingBy: 1) * 1000)
+        
+        // Update the NSTextField with the timer value
+        timeTextField.stringValue = String(format: "%02d:%02d:%02d.%03d", hours, minutes, seconds, milliseconds)
+    }
     
     func showAlert() {
         Alert(title: Text("ERROR"),

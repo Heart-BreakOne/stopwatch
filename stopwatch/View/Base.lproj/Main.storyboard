@@ -17,7 +17,8 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="stopwatch" systemMenu="apple" id="uQy-DD-JDr">
                                     <items>
-                                        <menuItem title="About stopwatch" id="5kV-Vb-QxS" userLabel="About Stopwatch">
+                                        <menuItem title="About Simple Stopwatch" id="5kV-Vb-QxS" userLabel="About Stopwatch">
+                                            <attributedString key="attributedTitle"/>
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
@@ -93,103 +94,84 @@
             <objects>
                 <viewController title="Stopwatch ViewController" id="XfG-lQ-9wD" customClass="ViewController" customModule="stopwatch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="292" height="97"/>
+                        <rect key="frame" x="0.0" y="0.0" width="292" height="80"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="2la-Fk-6Yn" userLabel="TimerView">
-                                <rect key="frame" x="0.0" y="40" width="292" height="57"/>
-                                <subviews>
-                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y4H-Wb-Q6f" userLabel="timerTextField">
-                                        <rect key="frame" x="20" y="8" width="252" height="41"/>
-                                        <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" editable="YES" refusesFirstResponder="YES" alignment="left" title="00:00:00.000" id="frF-SV-uM7" userLabel="timerTextFieldCell">
-                                            <font key="font" metaFont="systemBold" size="35"/>
-                                            <color key="textColor" name="Default"/>
-                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </textFieldCell>
-                                    </textField>
-                                </subviews>
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y4H-Wb-Q6f" userLabel="timerTextField">
+                                <rect key="frame" x="20" y="37" width="252" height="41"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" editable="YES" refusesFirstResponder="YES" alignment="left" title="00:00:00.000" id="frF-SV-uM7" userLabel="timerTextFieldCell">
+                                    <font key="font" metaFont="systemBold" size="35"/>
+                                    <color key="textColor" name="Default"/>
+                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </textFieldCell>
+                            </textField>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="mFi-r3-KSL">
+                                <rect key="frame" x="40" y="5" width="30" height="30"/>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="play_pause.png" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="ZeU-he-orl">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <color key="bezelColor" name="selectedMenuItemTextColor" catalog="System" colorSpace="catalog"/>
+                                <color key="contentTintColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <constraints>
-                                    <constraint firstItem="y4H-Wb-Q6f" firstAttribute="leading" secondItem="2la-Fk-6Yn" secondAttribute="leading" constant="22" id="59c-cD-4FH"/>
-                                    <constraint firstAttribute="trailing" secondItem="y4H-Wb-Q6f" secondAttribute="trailing" constant="22" id="BXL-bK-MLN"/>
-                                    <constraint firstItem="y4H-Wb-Q6f" firstAttribute="top" secondItem="2la-Fk-6Yn" secondAttribute="top" constant="8" id="N8L-KZ-EVw"/>
-                                    <constraint firstAttribute="bottom" secondItem="y4H-Wb-Q6f" secondAttribute="bottom" constant="8" id="W46-0W-oyR"/>
+                                    <constraint firstAttribute="height" constant="30" id="6wn-K5-4Rr"/>
+                                    <constraint firstAttribute="width" constant="30" id="waM-pD-JFo"/>
                                 </constraints>
-                            </customView>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="ud8-dF-7NE" userLabel="ButtonView">
-                                <rect key="frame" x="0.0" y="0.0" width="292" height="40"/>
-                                <subviews>
-                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="mFi-r3-KSL">
-                                        <rect key="frame" x="40" y="5" width="30" height="30"/>
-                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="play_pause.png" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="ZeU-he-orl">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <color key="bezelColor" name="selectedMenuItemTextColor" catalog="System" colorSpace="catalog"/>
-                                        <color key="contentTintColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="6wn-K5-4Rr"/>
-                                            <constraint firstAttribute="width" constant="30" id="waM-pD-JFo"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isTemplate" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="startButtonClicked:" target="XfG-lQ-9wD" id="ls2-Y9-xSR"/>
-                                        </connections>
-                                    </button>
-                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="ZAF-wP-qVI" userLabel="Stop Button">
-                                        <rect key="frame" x="131" y="5" width="30" height="30"/>
-                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="stop.png" imagePosition="only" alignment="center" refusesFirstResponder="YES" imageScaling="proportionallyUpOrDown" inset="2" id="IYf-Ht-vEe">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <color key="bezelColor" name="selectedMenuItemTextColor" catalog="System" colorSpace="catalog"/>
-                                        <color key="contentTintColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="30" id="UrI-jG-dYw"/>
-                                            <constraint firstAttribute="height" constant="30" id="vTP-1N-Bra"/>
-                                        </constraints>
-                                        <connections>
-                                            <action selector="stopButtonClicked:" target="XfG-lQ-9wD" id="Mdj-nI-xQ7"/>
-                                        </connections>
-                                    </button>
-                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="LeD-z0-TR7" userLabel="Config Button">
-                                        <rect key="frame" x="222" y="5" width="30" height="30"/>
-                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="settings.png" imagePosition="only" alignment="center" refusesFirstResponder="YES" imageScaling="proportionallyUpOrDown" inset="2" id="UgU-83-Opc">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <color key="bezelColor" name="Default"/>
-                                        <color key="contentTintColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="30" id="ZuJ-t9-OsC"/>
-                                            <constraint firstAttribute="height" constant="30" id="vTn-sF-aRt"/>
-                                        </constraints>
-                                        <connections>
-                                            <action selector="configButtonClicked:" target="XfG-lQ-9wD" id="MH5-WY-7BQ"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isTemplate" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="startButtonClicked:" target="XfG-lQ-9wD" id="ls2-Y9-xSR"/>
+                                </connections>
+                            </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="LeD-z0-TR7" userLabel="Config Button">
+                                <rect key="frame" x="222" y="5" width="30" height="30"/>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="settings.png" imagePosition="only" alignment="center" refusesFirstResponder="YES" imageScaling="proportionallyUpOrDown" inset="2" id="UgU-83-Opc">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <color key="bezelColor" name="Default"/>
+                                <color key="contentTintColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <constraints>
-                                    <constraint firstItem="ZAF-wP-qVI" firstAttribute="centerX" secondItem="ud8-dF-7NE" secondAttribute="centerX" id="HfF-0U-B23"/>
-                                    <constraint firstAttribute="trailing" secondItem="LeD-z0-TR7" secondAttribute="trailing" constant="40" id="Orh-Wz-czT"/>
-                                    <constraint firstItem="mFi-r3-KSL" firstAttribute="leading" secondItem="ud8-dF-7NE" secondAttribute="leading" constant="40" id="Wt4-Tt-fZp"/>
-                                    <constraint firstItem="mFi-r3-KSL" firstAttribute="centerY" secondItem="ud8-dF-7NE" secondAttribute="centerY" id="a2Y-3r-QtA"/>
-                                    <constraint firstItem="LeD-z0-TR7" firstAttribute="top" secondItem="ud8-dF-7NE" secondAttribute="top" constant="5" id="aKa-SQ-xIN"/>
-                                    <constraint firstItem="ZAF-wP-qVI" firstAttribute="centerY" secondItem="ud8-dF-7NE" secondAttribute="centerY" id="gRI-4V-Lj1"/>
-                                    <constraint firstItem="ZAF-wP-qVI" firstAttribute="top" secondItem="ud8-dF-7NE" secondAttribute="top" constant="5" id="q7e-gF-NcP"/>
-                                    <constraint firstItem="mFi-r3-KSL" firstAttribute="top" secondItem="ud8-dF-7NE" secondAttribute="top" constant="5" id="y5l-d7-0KG"/>
+                                    <constraint firstAttribute="width" constant="30" id="ZuJ-t9-OsC"/>
+                                    <constraint firstAttribute="height" constant="30" id="vTn-sF-aRt"/>
                                 </constraints>
-                            </customView>
+                                <connections>
+                                    <action selector="configButtonClicked:" target="XfG-lQ-9wD" id="MH5-WY-7BQ"/>
+                                </connections>
+                            </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="ZAF-wP-qVI" userLabel="Stop Button">
+                                <rect key="frame" x="131" y="5" width="30" height="30"/>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="stop.png" imagePosition="only" alignment="center" refusesFirstResponder="YES" imageScaling="proportionallyUpOrDown" inset="2" id="IYf-Ht-vEe">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <color key="bezelColor" name="selectedMenuItemTextColor" catalog="System" colorSpace="catalog"/>
+                                <color key="contentTintColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="UrI-jG-dYw"/>
+                                    <constraint firstAttribute="height" constant="30" id="vTP-1N-Bra"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="stopButtonClicked:" target="XfG-lQ-9wD" id="Mdj-nI-xQ7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="ud8-dF-7NE" secondAttribute="bottom" id="8dq-BF-6lH"/>
-                            <constraint firstItem="2la-Fk-6Yn" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="Cea-3h-cL3"/>
-                            <constraint firstItem="2la-Fk-6Yn" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="MIN-rp-Nmd"/>
-                            <constraint firstItem="ud8-dF-7NE" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="Yl4-Db-ltW"/>
-                            <constraint firstItem="ud8-dF-7NE" firstAttribute="top" secondItem="2la-Fk-6Yn" secondAttribute="bottom" id="ha2-4O-5Pr"/>
-                            <constraint firstAttribute="trailing" secondItem="ud8-dF-7NE" secondAttribute="trailing" id="r8U-av-YLn"/>
-                            <constraint firstAttribute="trailing" secondItem="2la-Fk-6Yn" secondAttribute="trailing" id="tgw-wM-kK1"/>
+                            <constraint firstAttribute="bottom" secondItem="ZAF-wP-qVI" secondAttribute="bottom" constant="5" id="54f-sL-CQz"/>
+                            <constraint firstItem="ZAF-wP-qVI" firstAttribute="leading" secondItem="mFi-r3-KSL" secondAttribute="trailing" constant="61" id="64w-wO-edJ"/>
+                            <constraint firstItem="ZAF-wP-qVI" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="9LN-YF-GiH"/>
+                            <constraint firstItem="mFi-r3-KSL" firstAttribute="top" secondItem="y4H-Wb-Q6f" secondAttribute="bottom" constant="2" id="JDJ-Y6-ZPF"/>
+                            <constraint firstItem="mFi-r3-KSL" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="40" id="RlJ-xD-Hnc"/>
+                            <constraint firstAttribute="bottom" secondItem="LeD-z0-TR7" secondAttribute="bottom" constant="5" id="UIh-Kb-xTR"/>
+                            <constraint firstAttribute="bottom" secondItem="mFi-r3-KSL" secondAttribute="bottom" constant="5" id="VtR-KH-rFj"/>
+                            <constraint firstItem="y4H-Wb-Q6f" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="22" id="WGn-cg-nsM"/>
+                            <constraint firstItem="LeD-z0-TR7" firstAttribute="leading" secondItem="ZAF-wP-qVI" secondAttribute="trailing" constant="61" id="Xt0-ku-oR5"/>
+                            <constraint firstAttribute="trailing" secondItem="y4H-Wb-Q6f" secondAttribute="trailing" constant="22" id="Z3T-Zr-PlM"/>
+                            <constraint firstItem="LeD-z0-TR7" firstAttribute="top" secondItem="y4H-Wb-Q6f" secondAttribute="bottom" constant="2" id="cW5-pK-Ok2"/>
+                            <constraint firstItem="y4H-Wb-Q6f" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="2" id="gUr-BX-cRI"/>
+                            <constraint firstItem="ZAF-wP-qVI" firstAttribute="top" secondItem="y4H-Wb-Q6f" secondAttribute="bottom" constant="2" id="wsk-Ps-LvR"/>
+                            <constraint firstAttribute="trailing" secondItem="LeD-z0-TR7" secondAttribute="trailing" constant="40" id="xXf-cz-eLc"/>
                         </constraints>
                     </view>
                     <connections>
@@ -203,7 +185,7 @@
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6" y="1086.5"/>
+            <point key="canvasLocation" x="6" y="1066"/>
         </scene>
         <!--Color Picker-->
         <scene sceneID="cd5-RP-hIT">
@@ -272,14 +254,15 @@
                             </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="oIh-Xd-bAN" firstAttribute="top" secondItem="g3S-aw-Dst" secondAttribute="top" constant="10" id="267-R0-EuT"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="V0z-vB-u3l" secondAttribute="trailing" constant="20" symbolic="YES" id="0cM-ol-xYN"/>
                             <constraint firstItem="oIh-Xd-bAN" firstAttribute="top" secondItem="g3S-aw-Dst" secondAttribute="top" constant="10" id="2JO-1k-lAh"/>
                             <constraint firstItem="WGW-nb-ZVr" firstAttribute="leading" secondItem="g3S-aw-Dst" secondAttribute="leading" constant="8" id="7fd-Nj-2lC"/>
                             <constraint firstItem="MGL-bf-ach" firstAttribute="top" secondItem="oIh-Xd-bAN" secondAttribute="bottom" constant="8" id="CNr-LW-LuD"/>
-                            <constraint firstItem="oIh-Xd-bAN" firstAttribute="leading" secondItem="Xog-6D-r5h" secondAttribute="trailing" constant="15" id="Guw-7w-C3g"/>
                             <constraint firstItem="xdZ-PS-6iT" firstAttribute="top" secondItem="Xog-6D-r5h" secondAttribute="bottom" constant="10" id="KvB-IH-sBF"/>
                             <constraint firstItem="Xog-6D-r5h" firstAttribute="top" secondItem="g3S-aw-Dst" secondAttribute="top" constant="10" id="Ns1-8v-hLi"/>
+                            <constraint firstAttribute="bottom" secondItem="WGW-nb-ZVr" secondAttribute="bottom" constant="10" id="ROd-MV-59i"/>
                             <constraint firstItem="WGW-nb-ZVr" firstAttribute="top" secondItem="V0z-vB-u3l" secondAttribute="bottom" constant="10" id="RQE-W4-N4H"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="WGW-nb-ZVr" secondAttribute="trailing" constant="20" symbolic="YES" id="RqE-pl-nN2"/>
                             <constraint firstItem="MGL-bf-ach" firstAttribute="leading" secondItem="xdZ-PS-6iT" secondAttribute="trailing" constant="15" id="Tf5-7N-Tsa"/>
                             <constraint firstItem="Xog-6D-r5h" firstAttribute="leading" secondItem="g3S-aw-Dst" secondAttribute="leading" constant="8" id="Vxq-d6-iWn"/>
                             <constraint firstItem="xdZ-PS-6iT" firstAttribute="leading" secondItem="Xog-6D-r5h" secondAttribute="leading" id="b7Q-V6-kHA"/>
