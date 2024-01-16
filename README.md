@@ -1,5 +1,6 @@
 # Stopwatch and timer
 
+## Download [here](https://github.com/Heart-BreakOne/stopwatch/releases/tag/v1.0.0) by clicking the Stopwatch.dmg at the Assets section.
 ## An always on screen timer and stopwatch with millisecond precision for MacOS built using Swift and UIKit.
 
 ### Set your preferences by clicking the ⚙️ button:
